@@ -230,6 +230,9 @@ loop(MyHash, MyWatched, MyWatch) ->
          loop(MyHash, MyWatched, MyWatch);
  
       %  final of join-proc
+      {From, {join_f, MyHash, Watched, Watch}} ->
+         From ! {response_join, {error, {conflict, {need, restart}}};
+
       {From, {join_f, Hash, Watched, Watch}} ->
          [{1, [[NextHash, NextPid, NextWatched] | _]}] = ets:lookup(nodetable, 1),
  
